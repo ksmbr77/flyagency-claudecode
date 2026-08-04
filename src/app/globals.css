@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050308;
+  --surface: #0d0815;
+  --surface-2: #140e22;
+  --foreground: #f5f3ff;
+  --muted: #a89dc0;
+  --violet: #8b5cf6;
+  --violet-2: #a855f7;
+  --violet-deep: #4c1d95;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-violet: var(--violet);
+  --color-violet-2: var(--violet-2);
+  --color-violet-deep: var(--violet-deep);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ffffff 0%, #d8b4fe 55%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow {
+  background: radial-gradient(
+    closest-side,
+    rgba(139, 92, 246, 0.45),
+    rgba(139, 92, 246, 0)
+  );
+  filter: blur(60px);
+}
+
+.card-border {
+  border: 1px solid rgba(168, 85, 247, 0.18);
+}
+
+.bg-grid {
+  background-image: linear-gradient(rgba(168, 85, 247, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
 }
