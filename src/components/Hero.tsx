@@ -1,54 +1,76 @@
-import WingsLogo from "./WingsLogo";
-import { WHATSAPP_LINK, INSTAGRAM_LINK } from "@/lib/contacts";
+"use client";
+
+import { motion } from "framer-motion";
+import PremiumButton from "./PremiumButton";
+import HeroVisual from "./HeroVisual";
+import { WHATSAPP_LINK } from "@/lib/contacts";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-grid">
-      <div className="glow pointer-events-none absolute left-1/2 top-[-10%] h-[600px] w-[600px] -translate-x-1/2" />
-      <div className="glow pointer-events-none absolute right-[-10%] top-1/3 h-[400px] w-[400px]" />
+    <section
+      id="top"
+      className="bg-mesh bg-noise relative pb-24 pt-36 sm:pt-44"
+    >
+      <div className="bg-hairline pointer-events-none absolute inset-0" />
+      <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        <div className="text-left">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="glass inline-block rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-violet-accent"
+          >
+            Marketing digital para empresas que querem crescer
+          </motion.span>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pb-28 pt-24 text-center sm:pt-32">
-        <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl border card-border bg-surface/60 shadow-[0_0_40px_rgba(139,92,246,0.25)]">
-          <WingsLogo className="h-11 w-11" />
+          <h1>
+            <motion.span
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+              className="text-display mt-6 block max-w-xl text-foreground"
+            >
+              Marketing que vende de{" "}
+              <span className="text-gradient">verdade.</span>
+            </motion.span>
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.55 }}
+            className="mt-7 max-w-md text-lg leading-relaxed text-muted"
+          >
+            Muita agência entrega relatório bonito e resultado fraco. A Fly
+            cuida de tudo — estratégia, criação e vendas — para transformar
+            seu investimento em clientes reais, todos os meses.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
+            className="mt-10 flex flex-col gap-4 sm:flex-row"
+          >
+            <PremiumButton href={WHATSAPP_LINK} target="_blank">
+              Agendar Diagnóstico
+            </PremiumButton>
+            <PremiumButton href="#cases" variant="ghost">
+              Ver resultados
+            </PremiumButton>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.9 }}
+            className="mt-8 text-sm text-muted"
+          >
+            +2 anos de mercado · Parceiros por todo o Brasil
+          </motion.p>
         </div>
 
-        <span className="mb-5 rounded-full border card-border bg-surface/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-violet-2">
-          Agência Digital · +2 anos de mercado
-        </span>
-
-        <h1 className="max-w-3xl text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-6xl">
-          Fly, voe rumo ao{" "}
-          <span className="text-gradient">sucesso</span>
-        </h1>
-
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-          Aumente as views e as vendas da sua empresa com tráfego pago,
-          alinhamento comercial e posicionamento de marca feitos por quem
-          entende de performance.
-        </p>
-
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-gradient-to-r from-violet-500 to-purple-600 px-8 py-4 text-base font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.45)] transition-transform hover:scale-105"
-          >
-            Quero decolar agora
-          </a>
-          <a
-            href={INSTAGRAM_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border card-border bg-surface/50 px-8 py-4 text-base font-semibold text-foreground transition-colors hover:bg-surface-2"
-          >
-            Ver no Instagram
-          </a>
-        </div>
-
-        <p className="mt-6 text-sm text-muted">
-          Parceiros por todo o Brasil 🇧🇷
-        </p>
+        <HeroVisual />
       </div>
     </section>
   );

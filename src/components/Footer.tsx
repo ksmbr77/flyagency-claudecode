@@ -3,17 +3,17 @@ import { WHATSAPP_LINK, INSTAGRAM_LINK } from "@/lib/contacts";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5">
+    <footer className="border-t border-white/[0.06]">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-10 text-center sm:flex-row sm:justify-between sm:text-left">
         <div className="flex items-center gap-2">
           <WingsLogo className="h-6 w-6" />
           <span className="text-sm font-medium text-foreground">
-            FLY <span className="text-violet-2">AGENCY</span>
+            FLY <span className="text-violet-accent">GROWTH STUDIO</span>
           </span>
         </div>
 
         <p className="text-xs text-muted">
-          © {new Date().getFullYear()} Fly Agency · Agência Digital · Todos os direitos reservados
+          © {new Date().getFullYear()} Fly Agency · Todos os direitos reservados
         </p>
 
         <div className="flex items-center gap-4 text-sm text-muted">

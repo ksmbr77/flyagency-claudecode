@@ -1,103 +1,134 @@
+"use client";
+
+import { motion } from "framer-motion";
+import TiltCard from "./TiltCard";
+import {
+  IconTarget,
+  IconShield,
+  IconHandshake,
+  IconLayout,
+  IconFunnel,
+  IconChart,
+  IconReport,
+  IconLoop,
+  IconTrending,
+} from "./icons";
+
 const services = [
   {
     title: "Gestão de Tráfego Pago",
     description:
-      "Campanhas estratégicas em Meta Ads e Google Ads para atrair o público certo e transformar cliques em clientes.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="9" stroke="url(#g1)" strokeWidth="1.6" />
-        <circle cx="12" cy="12" r="5" stroke="url(#g1)" strokeWidth="1.6" />
-        <circle cx="12" cy="12" r="1.4" fill="url(#g1)" />
-        <defs>
-          <linearGradient id="g1" x1="3" y1="3" x2="21" y2="21">
-            <stop stopColor="#d8b4fe" />
-            <stop offset="1" stopColor="#7c3aed" />
-          </linearGradient>
-        </defs>
-      </svg>
-    ),
-  },
-  {
-    title: "Alinhamento Comercial",
-    description:
-      "Estruturamos o seu processo de vendas para que cada lead gerado seja aproveitado ao máximo pelo seu time comercial.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M4 12a8 8 0 1 1 3 6.24M4 12v5h5"
-          stroke="url(#g2)"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="12" cy="12" r="2" fill="url(#g2)" />
-        <defs>
-          <linearGradient id="g2" x1="3" y1="3" x2="21" y2="21">
-            <stop stopColor="#d8b4fe" />
-            <stop offset="1" stopColor="#7c3aed" />
-          </linearGradient>
-        </defs>
-      </svg>
-    ),
+      "Anúncios que colocam sua marca na frente de quem já está pronto para comprar.",
+    icon: IconTarget,
   },
   {
     title: "Posicionamento de Marca",
     description:
-      "Construímos uma identidade forte e consistente para sua empresa se destacar e ser lembrada no mercado.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M4 10v4l4 1 9 4V5L8 9l-4 1Z"
-          stroke="url(#g3)"
-          strokeWidth="1.6"
-          strokeLinejoin="round"
-        />
-        <path d="M8 15v4a2 2 0 0 0 4 0v-3" stroke="url(#g3)" strokeWidth="1.6" strokeLinecap="round" />
-        <defs>
-          <linearGradient id="g3" x1="3" y1="3" x2="21" y2="21">
-            <stop stopColor="#d8b4fe" />
-            <stop offset="1" stopColor="#7c3aed" />
-          </linearGradient>
-        </defs>
-      </svg>
-    ),
+      "Uma identidade que passa confiança e faz sua empresa ser lembrada.",
+    icon: IconShield,
+  },
+  {
+    title: "Estratégia Comercial",
+    description:
+      "Organizamos seu processo de vendas para nenhum lead se perder pelo caminho.",
+    icon: IconHandshake,
+  },
+  {
+    title: "Landing Pages de Alta Conversão",
+    description:
+      "Páginas rápidas e persuasivas, feitas para transformar visita em cliente.",
+    icon: IconLayout,
+  },
+  {
+    title: "Funis de Venda",
+    description:
+      "Um caminho claro, do primeiro contato até o fechamento da compra.",
+    icon: IconFunnel,
+  },
+  {
+    title: "Análise de Dados",
+    description:
+      "Decisões baseadas em números reais, não em achismo ou tentativa.",
+    icon: IconChart,
+  },
+  {
+    title: "Relatórios Inteligentes",
+    description:
+      "Você sabe exatamente para onde vai seu investimento e o que ele traz de volta.",
+    icon: IconReport,
+  },
+  {
+    title: "Otimização Contínua",
+    description:
+      "Testamos e ajustamos toda semana, sem esperar o mês inteiro passar.",
+    icon: IconLoop,
+  },
+  {
+    title: "Crescimento Orientado por Dados",
+    description:
+      "Cada decisão pensada para gerar mais resultado com o mesmo investimento.",
+    icon: IconTrending,
   },
 ];
 
 export default function Services() {
   return (
-    <section id="solucoes" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="servicos" className="relative mx-auto max-w-6xl px-6 py-28">
       <div className="mx-auto max-w-2xl text-center">
-        <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-2">
-          Nossas soluções
+        <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
+          O que entregamos
         </span>
-        <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Tudo o que sua empresa precisa para{" "}
-          <span className="text-gradient">decolar</span>
+
+        <h2 className="mt-4">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+            className="block text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+          >
+            Tudo o que sua empresa precisa para{" "}
+            <span className="text-gradient">vender mais</span>
+          </motion.span>
         </h2>
-        <p className="mt-4 text-muted">
-          Estratégia, execução e acompanhamento próximo em cada etapa do seu
-          crescimento.
-        </p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-4 text-muted"
+        >
+          Da estratégia à execução, cuidamos de cada etapa para transformar
+          atenção em cliente — sem depender de mil fornecedores diferentes.
+        </motion.p>
       </div>
 
-      <div className="mt-14 grid gap-6 sm:grid-cols-3">
-        {services.map((service) => (
-          <div
-            key={service.title}
-            className="group rounded-2xl border card-border bg-surface/50 p-8 transition-all hover:-translate-y-1 hover:bg-surface-2 hover:shadow-[0_0_35px_rgba(139,92,246,0.2)]"
-          >
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl border card-border bg-violet-deep/20">
-              {service.icon}
-            </div>
-            <h3 className="mt-6 text-lg font-semibold text-foreground">
-              {service.title}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              {service.description}
-            </p>
-          </div>
-        ))}
+      <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service, i) => {
+          const Icon = service.icon;
+          return (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+            >
+              <TiltCard className="glass h-full rounded-2xl p-7 transition-colors duration-300 hover:bg-white/[0.06]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-violet-secondary/15">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 text-base font-semibold text-foreground">
+                  {service.title}
+                </h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-muted">
+                  {service.description}
+                </p>
+              </TiltCard>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const highlights = [
   "Mais de 2 anos ajudando negócios a crescer online",
   "Parceiros ativos em todo o território brasileiro",
@@ -7,37 +11,56 @@ const highlights = [
 
 export default function About() {
   return (
-    <section id="sobre" className="relative overflow-hidden border-y border-white/5 bg-surface/40">
-      <div className="glow pointer-events-none absolute left-[-10%] top-1/2 h-[400px] w-[400px] -translate-y-1/2" />
-
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-24 sm:grid-cols-2 sm:items-center">
-        <div>
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-2">
+    <section
+      id="sobre"
+      className="relative border-y border-white/[0.06] bg-surface/60"
+      style={{
+        background:
+          "radial-gradient(900px circle at 15% 20%, rgba(139,92,246,0.10), transparent 55%), radial-gradient(700px circle at 90% 80%, rgba(168,85,247,0.08), transparent 55%), #0c0b12",
+      }}
+    >
+      <div className="relative mx-auto grid max-w-6xl gap-12 px-6 py-28 sm:grid-cols-2 sm:items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+        >
+          <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
             Sobre a Fly Agency
           </span>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Marketing digital com foco em{" "}
-            <span className="text-gradient">resultado real</span>
+            Marketing pensado para o seu negócio{" "}
+            <span className="text-gradient">vender mais</span>
           </h2>
-          <p className="mt-5 text-muted leading-relaxed">
-            Somos uma agência digital que une estratégia, dados e
-            criatividade para gerar mais views, mais leads e mais vendas
-            para o seu negócio — sem enrolação e com acompanhamento de
-            verdade.
+          <p className="mt-5 leading-relaxed text-muted">
+            Nada de relatório bonito e resultado fraco. A Fly une estratégia,
+            dados e criatividade para trazer mais gente conhecendo sua marca
+            — e mais gente comprando dela.
           </p>
-        </div>
+        </motion.div>
 
-        <ul className="space-y-4">
+        <motion.ul
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+          className="space-y-4"
+        >
           {highlights.map((item) => (
-            <li
+            <motion.li
               key={item}
-              className="flex items-start gap-3 rounded-xl border card-border bg-surface/60 p-4"
+              variants={{
+                hidden: { opacity: 0, x: 24 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+              }}
+              className="glass flex items-start gap-3 rounded-xl p-4"
             >
-              <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-gradient-to-r from-violet-500 to-purple-600" />
+              <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-gradient-to-r from-violet to-violet-secondary" />
               <span className="text-sm text-foreground/90">{item}</span>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </div>
     </section>
   );
