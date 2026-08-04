@@ -8,6 +8,8 @@ import HeroParticles from "./HeroParticles";
 import WingsLogo from "./WingsLogo";
 import { useDiagnostico } from "./DiagnosticoContext";
 
+const heroWords = ["Marketing", "que", "vende", "de"];
+
 export default function Hero() {
   const { openModal } = useDiagnostico();
   const sectionRef = useRef<HTMLElement>(null);
@@ -52,15 +54,29 @@ export default function Hero() {
             Voe Alto · Marketing digital para empresas que querem crescer
           </motion.span>
 
-          <h1>
+          <h1 className="text-display mt-6 max-w-xl text-foreground [perspective:800px]">
+            {heroWords.map((word, i) => (
+              <motion.span
+                key={word}
+                initial={{ opacity: 0, y: 24, rotateX: -40 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 + i * 0.06, ease: [0.16, 1, 0.3, 1] as const }}
+                className="mr-[0.22em] inline-block"
+              >
+                {word}
+              </motion.span>
+            ))}
             <motion.span
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-              className="text-display mt-6 block max-w-xl text-foreground"
+              initial={{ opacity: 0, y: 24, rotateX: -40 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.1 + heroWords.length * 0.06,
+                ease: [0.16, 1, 0.3, 1] as const,
+              }}
+              className="text-gradient inline-block"
             >
-              Marketing que vende de{" "}
-              <span className="text-gradient">verdade.</span>
+              verdade.
             </motion.span>
           </h1>
 
