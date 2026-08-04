@@ -20,7 +20,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="glass inline-block rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-violet-accent"
           >
-            Marketing digital para empresas que querem crescer
+            Voe Alto · Marketing digital para empresas que querem crescer
           </motion.span>
 
           <h1>

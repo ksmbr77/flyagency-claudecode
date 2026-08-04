@@ -7,8 +7,13 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-10 text-center sm:flex-row sm:justify-between sm:text-left">
         <div className="flex items-center gap-2">
           <WingsLogo className="h-6 w-6" />
-          <span className="text-sm font-medium text-foreground">
-            FLY <span className="text-violet-accent">GROWTH STUDIO</span>
+          <span className="leading-tight">
+            <span className="block text-sm font-medium text-foreground">
+              FLY <span className="text-violet-accent">GROWTH STUDIO</span>
+            </span>
+            <span className="block text-[11px] tracking-[0.15em] text-muted">
+              VOE ALTO
+            </span>
           </span>
         </div>
 
