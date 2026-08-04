@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/Ksm/Downloads/**)",
+      "Bash(npx --yes create-next-app@latest flowzy-manager-tmp --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-git)"
+    ]
+  }
+}
