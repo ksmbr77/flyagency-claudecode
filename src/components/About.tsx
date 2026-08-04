@@ -36,7 +36,7 @@ export default function About() {
           <p className="mt-5 leading-relaxed text-muted">
             Nada de relatório bonito e resultado fraco. A Fly une estratégia,
             dados e criatividade para trazer mais gente conhecendo sua marca
-            — e mais gente comprando dela.
+            e mais gente comprando dela.
           </p>
         </motion.div>
 

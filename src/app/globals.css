@@ -213,12 +213,75 @@ body {
   cursor: none;
 }
 
+/* Blocking script (see layout.tsx) flags this before first paint so the
+   loader never flashes for repeat visits or prefers-reduced-motion. */
+.intro-skip #fly-intro-loader {
+  display: none !important;
+}
+
+@keyframes flow-right {
+  0% {
+    left: -8%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+.flow-comet-h {
+  position: absolute;
+  top: 50%;
+  width: 5rem;
+  height: 3px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent, var(--violet-accent), transparent);
+  filter: blur(1.5px) drop-shadow(0 0 6px rgba(168, 85, 247, 0.85));
+  animation: flow-right 3.2s linear infinite;
+}
+
+@keyframes flow-down {
+  0% {
+    top: -8%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+.flow-comet-v {
+  position: absolute;
+  left: 50%;
+  width: 3px;
+  height: 4rem;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, var(--violet-accent), transparent);
+  filter: blur(1.5px) drop-shadow(0 0 6px rgba(168, 85, 247, 0.85));
+  animation: flow-down 3.2s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .glow-breathe,
   .pulse-dot,
   .drift-slow,
-  .drift-center {
+  .drift-center,
+  .flow-comet-h,
+  .flow-comet-v {
     animation: none !important;
+    opacity: 0;
   }
 
   html {

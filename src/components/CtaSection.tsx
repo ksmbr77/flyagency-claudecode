@@ -44,7 +44,7 @@ export default function CtaSection() {
 
         <p className="relative mx-auto mt-6 max-w-xl text-muted">
           Em menos de 30 minutos mostramos exatamente onde sua empresa está
-          perdendo oportunidades — e o que fazer a respeito.
+          perdendo oportunidades e o que fazer a respeito.
         </p>
 
         <div className="relative mt-10 flex justify-center">

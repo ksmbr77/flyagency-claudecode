@@ -71,8 +71,8 @@ export default function Hero() {
             className="mt-7 max-w-md text-lg leading-relaxed text-muted"
           >
             Muita agência entrega relatório bonito e resultado fraco. A Fly
-            cuida de tudo — estratégia, criação e vendas — para transformar
-            seu investimento em clientes reais, todos os meses.
+            cuida de tudo: estratégia, criação e vendas, para transformar seu
+            investimento em clientes reais, todos os meses.
           </motion.p>
 
           <motion.div

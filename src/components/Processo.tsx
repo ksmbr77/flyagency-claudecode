@@ -17,7 +17,7 @@ const steps = [
     icon: IconCompass,
     title: "Planejamento Estratégico",
     description:
-      "Montamos um plano sob medida para o seu momento, com metas claras de crescimento — nada de fórmula pronta.",
+      "Montamos um plano sob medida para o seu momento, com metas claras de crescimento, sem fórmula pronta.",
   },
   {
     n: "03",
@@ -58,36 +58,47 @@ export default function Processo() {
         </p>
       </div>
 
-      <div className="relative mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        <div className="pointer-events-none absolute left-0 right-0 top-12 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block" />
+      <div className="relative mt-16">
+        {/* Vertical connecting line + traveling glow, mobile/tablet only */}
+        <div className="pointer-events-none absolute bottom-8 left-7 top-8 w-px overflow-hidden bg-gradient-to-b from-transparent via-violet-accent/25 to-transparent lg:hidden">
+          <div className="flow-comet-v" />
+        </div>
 
-        {steps.map((step, i) => {
-          const Icon = step.icon;
-          return (
-            <motion.div
-              key={step.n}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-            >
-              <TiltCard className="glass group relative flex h-full flex-col rounded-2xl p-6 transition-colors duration-300 hover:bg-white/[0.06]">
-                <div className="flex items-center justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-violet-secondary/15 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                    <Icon className="h-5 w-5" />
+        <div className="relative grid gap-5 lg:grid-cols-5">
+          {/* Horizontal connecting line + traveling glow, desktop only */}
+          <div className="pointer-events-none absolute left-0 right-0 top-12 hidden h-px overflow-hidden lg:block">
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-violet-accent/25 to-transparent" />
+            <div className="flow-comet-h" />
+          </div>
+
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <motion.div
+                key={step.n}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+              >
+                <TiltCard className="glass group relative flex h-full flex-col rounded-2xl p-6 transition-colors duration-300 hover:bg-white/[0.06]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-violet-secondary/15 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-2xl font-bold text-white/10">{step.n}</span>
                   </div>
-                  <span className="text-2xl font-bold text-white/10">{step.n}</span>
-                </div>
-                <h3 className="mt-5 text-base font-semibold text-foreground">
-                  {step.title}
-                </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted">
-                  {step.description}
-                </p>
-              </TiltCard>
-            </motion.div>
-          );
-        })}
+                  <h3 className="mt-5 text-base font-semibold text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted">
+                    {step.description}
+                  </p>
+                </TiltCard>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

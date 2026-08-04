@@ -100,7 +100,7 @@ export default function Services() {
           className="mt-4 text-muted"
         >
           Da estratégia à execução, cuidamos de cada etapa para transformar
-          atenção em cliente — sem depender de mil fornecedores diferentes.
+          atenção em cliente, sem depender de mil fornecedores diferentes.
         </motion.p>
       </div>
 
