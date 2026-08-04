@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fly Agency LP",
+  title: "Fly Agency",
   description: "Landing page da Fly Agency",
 };
 
