@@ -26,7 +26,7 @@ const cases = [
 
 export default function Cases() {
   return (
-    <section id="cases" className="relative border-y border-white/[0.06] bg-surface/40 py-32">
+    <section id="cases" className="relative scroll-mt-24 border-y border-white/[0.06] bg-surface/40 py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">

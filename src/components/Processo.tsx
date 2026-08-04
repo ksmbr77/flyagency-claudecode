@@ -44,7 +44,7 @@ const steps = [
 
 export default function Processo() {
   return (
-    <section id="processo" className="relative mx-auto max-w-6xl px-6 py-28">
+    <section id="processo" className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-28">
       <div className="mx-auto max-w-2xl text-center">
         <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
           Como trabalhamos

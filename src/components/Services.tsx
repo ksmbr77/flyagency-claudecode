@@ -73,7 +73,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="servicos" className="relative mx-auto max-w-6xl px-6 py-28">
+    <section id="servicos" className="relative mx-auto max-w-6xl scroll-mt-24 px-6 py-28">
       <div className="mx-auto max-w-2xl text-center">
         <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
           O que entregamos
@@ -115,8 +115,8 @@ export default function Services() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
             >
-              <TiltCard className="glass h-full rounded-2xl p-7 transition-colors duration-300 hover:bg-white/[0.06]">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-violet-secondary/15">
+              <TiltCard className="glass group h-full rounded-2xl p-7 transition-colors duration-300 hover:bg-white/[0.06]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-violet-secondary/15 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-5 text-base font-semibold text-foreground">

@@ -16,7 +16,7 @@ export default function CtaSection() {
   const glowY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
 
   return (
-    <section ref={sectionRef} id="contato" className="mx-auto max-w-6xl px-6 py-32">
+    <section ref={sectionRef} id="contato" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-32">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

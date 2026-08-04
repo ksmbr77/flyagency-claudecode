@@ -13,7 +13,7 @@ export default function About() {
   return (
     <section
       id="sobre"
-      className="relative border-y border-white/[0.06] bg-surface/60"
+      className="relative scroll-mt-24 border-y border-white/[0.06] bg-surface/60"
       style={{
         background:
           "radial-gradient(900px circle at 15% 20%, rgba(139,92,246,0.10), transparent 55%), radial-gradient(700px circle at 90% 80%, rgba(168,85,247,0.08), transparent 55%), #0c0b12",
