@@ -97,7 +97,7 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-4 text-muted"
+          className="mt-4 text-[15px] text-muted"
         >
           Da estratégia à execução, cuidamos de cada etapa para transformar
           atenção em cliente, sem depender de mil fornecedores diferentes.
@@ -122,7 +122,7 @@ export default function Services() {
                 <h3 className="mt-5 text-base font-semibold text-foreground">
                   {service.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-muted">
+                <p className="mt-2.5 text-[15px] leading-relaxed text-muted">
                   {service.description}
                 </p>
               </TiltCard>

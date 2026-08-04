@@ -16,13 +16,13 @@ export default function CtaSection() {
   const glowY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
 
   return (
-    <section ref={sectionRef} id="contato" className="mx-auto max-w-6xl px-6 py-28">
+    <section ref={sectionRef} id="contato" className="mx-auto max-w-6xl px-6 py-32">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-        className="relative rounded-3xl border border-white/[0.08] px-8 py-20 text-center sm:px-16"
+        className="relative rounded-3xl border border-white/[0.08] px-8 py-24 text-center sm:px-16 sm:py-28"
         style={{
           background:
             "radial-gradient(600px circle at 50% -10%, rgba(139,92,246,0.35), transparent 60%), linear-gradient(180deg, #0c0b12 0%, #060608 100%)",
@@ -42,13 +42,13 @@ export default function CtaSection() {
           <span className="text-gradient">voar alto?</span>
         </h2>
 
-        <p className="relative mx-auto mt-6 max-w-xl text-muted">
+        <p className="relative mx-auto mt-6 max-w-xl text-[17px] text-muted">
           Em menos de 30 minutos mostramos exatamente onde sua empresa está
           perdendo oportunidades e o que fazer a respeito.
         </p>
 
-        <div className="relative mt-10 flex justify-center">
-          <PremiumButton onClick={openModal}>
+        <div className="relative mt-12 flex justify-center">
+          <PremiumButton onClick={openModal} className="!px-10 !py-5 !text-base">
             Agendar diagnóstico
           </PremiumButton>
         </div>

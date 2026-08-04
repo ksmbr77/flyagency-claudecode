@@ -43,14 +43,16 @@ export default function HeroVisual() {
   const adsY = useTransform(sy, (v) => v * -22);
   const chartX = useTransform(sx, (v) => v * 28);
   const chartY = useTransform(sy, (v) => v * 28);
+  const convX = useTransform(sx, (v) => v * -16);
+  const convY = useTransform(sy, (v) => v * -16);
 
   return (
     <div
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative mx-auto h-[320px] w-full max-w-md origin-top scale-75 [perspective:1200px] sm:h-[360px] sm:scale-90 lg:h-[480px] lg:scale-100"
+      className="relative mx-auto h-[320px] w-full max-w-lg origin-top scale-75 [perspective:1200px] sm:h-[380px] sm:scale-90 lg:h-[500px] lg:scale-100"
     >
-      <div className="drift-center glow-violet pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 rounded-full bg-violet/25 blur-[80px]" />
+      <div className="drift-center glow-violet pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 rounded-full bg-violet/25 blur-[90px]" />
 
       {/* Dashboard mockup */}
       <motion.div
@@ -112,6 +114,24 @@ export default function HeroVisual() {
         <p className="text-[11px] text-muted">Leads gerados</p>
         <p className="text-gradient text-2xl font-bold">+2.340</p>
         <p className="mt-1 text-[11px] text-violet-accent">↑ 34% vs. mês anterior</p>
+      </motion.div>
+
+      {/* Conversion rate mockup */}
+      <motion.div
+        style={{ x: convX, y: convY }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{
+          opacity: { duration: 0.8, delay: 1.2 },
+          y: { duration: 6.5, repeat: Infinity, ease: "easeInOut" },
+        }}
+        className="glass-strong absolute bottom-2 right-2 w-40 rounded-2xl p-4 shadow-[0_20px_60px_rgba(0,0,0,0.5)] sm:right-4"
+      >
+        <p className="text-[11px] text-muted">Taxa de conversão</p>
+        <p className="text-gradient text-xl font-bold">+18%</p>
+        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+          <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-violet to-violet-accent" />
+        </div>
       </motion.div>
     </div>
   );

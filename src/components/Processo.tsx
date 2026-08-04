@@ -52,7 +52,7 @@ export default function Processo() {
         <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Um processo <span className="text-gradient">simples e transparente</span>
         </h2>
-        <p className="mt-4 text-muted">
+        <p className="mt-4 text-[15px] text-muted">
           Sem caixa-preta. Você sabe exatamente em que etapa sua empresa está
           a cada momento.
         </p>
@@ -91,7 +91,7 @@ export default function Processo() {
                   <h3 className="mt-5 text-base font-semibold text-foreground">
                     {step.title}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-muted">
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-muted">
                     {step.description}
                   </p>
                 </TiltCard>

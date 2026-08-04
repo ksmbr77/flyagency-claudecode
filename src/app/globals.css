@@ -5,7 +5,7 @@
   --surface: #0c0b12;
   --surface-2: #131220;
   --foreground: #ffffff;
-  --muted: #b6b6c4;
+  --muted: #c4c4d3;
   --violet: #8b5cf6;
   --violet-secondary: #6d28d9;
   --violet-accent: #a855f7;
@@ -43,6 +43,15 @@ body {
   font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.02em;
+}
+
+/* Mid-weight headline utility for sections that need more emphasis than a
+   standard h2 (e.g. Cases/social proof) but shouldn't compete with the H1. */
+.text-display-sm {
+  font-size: clamp(2rem, 1.5rem + 2.6vw, 3.5rem);
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.015em;
 }
 
 .text-gradient {
