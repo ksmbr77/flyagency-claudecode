@@ -21,17 +21,19 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="glass flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 glow-violet"
+            className="relative mx-auto flex h-16 w-16 items-center justify-center sm:h-20 sm:w-20"
           >
-            <WingsLogo className="h-8 w-8" />
+            <div className="drift-center pointer-events-none absolute left-1/2 top-1/2 h-20 w-20 rounded-full bg-violet/25 blur-[36px]" />
+            <WingsLogo className="relative h-16 w-16 sm:h-20 sm:w-20" />
           </motion.div>
 
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="glass mt-5 inline-block rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-violet-accent"
+            className="glass mt-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-violet-accent"
           >
+            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-violet-accent" />
             Voe Alto · Marketing digital para empresas que querem crescer
           </motion.span>
 

@@ -5,8 +5,8 @@ export default function WingsLogo({ className = "h-8 w-8" }: { className?: strin
     <Image
       src="/logo.png"
       alt="Fly Agency"
-      width={64}
-      height={64}
+      width={160}
+      height={160}
       className={`${className} object-contain`}
     />
   );

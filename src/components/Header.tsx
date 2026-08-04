@@ -45,14 +45,9 @@ export default function Header() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="#top" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <WingsLogo className="h-7 w-7" />
-          <span className="leading-tight">
-            <span className="block text-sm font-bold tracking-[0.15em] text-foreground">
-              FLY
-            </span>
-            <span className="block text-[10px] font-medium tracking-[0.2em] text-muted">
-              GROWTH STUDIO
-            </span>
+          <WingsLogo className="h-9 w-9 sm:h-11 sm:w-11" />
+          <span className="text-sm font-bold tracking-[0.15em] text-foreground">
+            FLY AGENCY
           </span>
         </a>
 

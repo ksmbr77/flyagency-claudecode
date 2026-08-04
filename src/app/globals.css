@@ -9,6 +9,7 @@
   --violet: #8b5cf6;
   --violet-secondary: #6d28d9;
   --violet-accent: #a855f7;
+  --magenta: #d946ef;
   --border-soft: rgba(255, 255, 255, 0.08);
   --border-softer: rgba(255, 255, 255, 0.06);
 }
@@ -22,6 +23,7 @@
   --color-violet: var(--violet);
   --color-violet-secondary: var(--violet-secondary);
   --color-violet-accent: var(--violet-accent);
+  --color-magenta: var(--magenta);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -99,6 +101,60 @@ body {
   box-shadow: 0 0 40px rgba(139, 92, 246, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
+@keyframes glow-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  50% {
+    box-shadow: 0 0 58px rgba(139, 92, 246, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+.glow-breathe {
+  animation: glow-breathe 3.2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(139, 92, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-out infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(3%, -4%) scale(1.08);
+  }
+}
+.drift-slow {
+  animation: drift 14s ease-in-out infinite;
+}
+
+@keyframes drift-center {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-47%, -54%) scale(1.1);
+  }
+}
+.drift-center {
+  animation: drift-center 12s ease-in-out infinite;
+}
+
 /* Cursor-follow glow: JS sets --mx/--my per element */
 .spotlight {
   position: relative;
@@ -120,5 +176,29 @@ body {
   z-index: -1;
 }
 .spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Cursor-follow sheen for opaque surfaces (buttons): painted on top via blend mode */
+.spotlight-top {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-top::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    120px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.35),
+    transparent 70%
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.spotlight-top:hover::after {
   opacity: 1;
 }

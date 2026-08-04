@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { PointerEvent, ReactNode } from "react";
 
 type Props = {
   href?: string;
@@ -25,11 +25,18 @@ export default function PremiumButton({
 
   const styles =
     variant === "primary"
-      ? "text-white bg-gradient-to-r from-violet to-violet-secondary glow-violet"
-      : "text-white/90 glass hover:bg-white/[0.07]";
+      ? "text-white bg-gradient-to-r from-violet to-violet-secondary glow-violet glow-breathe spotlight-top"
+      : "text-white/90 glass hover:bg-white/[0.07] spotlight";
+
+  function handlePointerMove(e: PointerEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--mx", `${((e.clientX - rect.left) / rect.width) * 100}%`);
+    e.currentTarget.style.setProperty("--my", `${((e.clientY - rect.top) / rect.height) * 100}%`);
+  }
 
   const motionProps = {
     className: `${base} ${styles} ${className}`,
+    onPointerMove: handlePointerMove,
     initial: "rest" as const,
     whileHover: "hover" as const,
     whileTap: { scale: 0.97 },
@@ -40,9 +47,9 @@ export default function PremiumButton({
 
   const content = (
     <>
-      <span>{children}</span>
+      <span className="relative z-10">{children}</span>
       <motion.span
-        className="inline-block"
+        className="relative z-10 inline-block"
         variants={{ rest: { x: 0 }, hover: { x: 4 } }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
