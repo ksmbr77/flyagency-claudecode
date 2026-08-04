@@ -12,11 +12,17 @@ const desafios = [
   "Outro",
 ];
 
+export type ModalSource = "default" | "exit-intent";
+
+export const LEAD_SUBMITTED_KEY = "fly-lead-submitted";
+
 export default function DiagnosticoModal({
   open,
+  source = "default",
   onClose,
 }: {
   open: boolean;
+  source?: ModalSource;
   onClose: () => void;
 }) {
   const reduceMotion = useReducedMotion();
@@ -84,6 +90,7 @@ export default function DiagnosticoModal({
       "noopener,noreferrer"
     );
 
+    sessionStorage.setItem(LEAD_SUBMITTED_KEY, "1");
     setSent(true);
     window.setTimeout(() => {
       onClose();
@@ -158,14 +165,17 @@ export default function DiagnosticoModal({
             ) : (
               <>
                 <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
-                  Vamos conversar
+                  {source === "exit-intent" ? "Antes de você ir" : "Vamos conversar"}
                 </span>
                 <h3 id="diagnostico-title" className="mt-3 text-2xl font-bold text-foreground">
-                  Agende seu diagnóstico
+                  {source === "exit-intent"
+                    ? "Que tal um diagnóstico rápido?"
+                    : "Agende seu diagnóstico"}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
-                  Preencha rapidinho e a gente continua a conversa no
-                  WhatsApp, já com o contexto do seu negócio.
+                  {source === "exit-intent"
+                    ? "Leva menos de 1 minuto. A gente te mostra onde sua empresa está perdendo oportunidades antes de você sair."
+                    : "Preencha rapidinho e a gente continua a conversa no WhatsApp, já com o contexto do seu negócio."}
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
