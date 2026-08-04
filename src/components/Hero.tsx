@@ -1,20 +1,35 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import PremiumButton from "./PremiumButton";
 import HeroVisual from "./HeroVisual";
+import HeroParticles from "./HeroParticles";
 import WingsLogo from "./WingsLogo";
 import { useDiagnostico } from "./DiagnosticoContext";
 
 export default function Hero() {
   const { openModal } = useDiagnostico();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const visualY = useTransform(scrollYProgress, [0, 1], [0, 70]);
 
   return (
     <section
+      ref={sectionRef}
       id="top"
       className="bg-mesh bg-noise relative pb-24 pt-36 sm:pt-44"
     >
-      <div className="bg-hairline pointer-events-none absolute inset-0" />
+      <motion.div
+        style={{ y: bgY }}
+        className="bg-hairline pointer-events-none absolute inset-0"
+      />
+      <HeroParticles />
       <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         <div className="text-left">
           <motion.div
@@ -84,7 +99,9 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        <HeroVisual />
+        <motion.div style={{ y: visualY }}>
+          <HeroVisual />
+        </motion.div>
       </div>
     </section>
   );

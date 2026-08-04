@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import IconDefs from "@/components/IconDefs";
 import DiagnosticoProvider from "@/components/DiagnosticoContext";
+import IntroLoader from "@/components/IntroLoader";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,6 +30,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <IconDefs />
+        <IntroLoader />
+        <CustomCursor />
         <SmoothScroll>
           <DiagnosticoProvider>{children}</DiagnosticoProvider>
         </SmoothScroll>

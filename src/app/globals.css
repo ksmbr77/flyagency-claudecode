@@ -202,3 +202,26 @@ body {
 .spotlight-top:hover::after {
   opacity: 1;
 }
+
+/* Cursor-follow trail (see CustomCursor component) */
+.cursor-none-custom,
+.cursor-none-custom a,
+.cursor-none-custom button,
+.cursor-none-custom input,
+.cursor-none-custom select,
+.cursor-none-custom textarea {
+  cursor: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-breathe,
+  .pulse-dot,
+  .drift-slow,
+  .drift-center {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+}

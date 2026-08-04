@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useTransform, useSpring } from "framer-motion";
 import { PointerEvent } from "react";
 
 function Bars() {
@@ -19,12 +19,14 @@ function Bars() {
 }
 
 export default function HeroVisual() {
+  const reduceMotion = useReducedMotion();
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 60, damping: 18 });
   const sy = useSpring(my, { stiffness: 60, damping: 18 });
 
   function handlePointerMove(e: PointerEvent<HTMLDivElement>) {
+    if (reduceMotion) return;
     const rect = e.currentTarget.getBoundingClientRect();
     mx.set(((e.clientX - rect.left) / rect.width - 0.5) * 2);
     my.set(((e.clientY - rect.top) / rect.height - 0.5) * 2);

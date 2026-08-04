@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { WHATSAPP_NUMBER } from "@/lib/contacts";
 
 const desafios = [
@@ -19,15 +19,20 @@ export default function DiagnosticoModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const reduceMotion = useReducedMotion();
   const [nome, setNome] = useState("");
   const [empresa, setEmpresa] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [desafio, setDesafio] = useState("");
+  const [sent, setSent] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!open) return;
+    // reset the success view whenever the modal is reopened
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSent(false);
     document.body.style.overflow = "hidden";
     firstFieldRef.current?.focus();
 
@@ -79,11 +84,14 @@ export default function DiagnosticoModal({
       "noopener,noreferrer"
     );
 
-    setNome("");
-    setEmpresa("");
-    setWhatsapp("");
-    setDesafio("");
-    onClose();
+    setSent(true);
+    window.setTimeout(() => {
+      onClose();
+      setNome("");
+      setEmpresa("");
+      setWhatsapp("");
+      setDesafio("");
+    }, 1900);
   }
 
   return (
@@ -118,18 +126,49 @@ export default function DiagnosticoModal({
               ✕
             </button>
 
-            <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
-              Vamos conversar
-            </span>
-            <h3 id="diagnostico-title" className="mt-3 text-2xl font-bold text-foreground">
-              Agende seu diagnóstico
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
-              Preencha rapidinho e a gente continua a conversa no WhatsApp,
-              já com o contexto do seu negócio.
-            </p>
+            {sent ? (
+              <div className="flex flex-col items-center py-6 text-center">
+                <motion.div
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="glow-violet flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-violet to-violet-secondary"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" className="h-8 w-8" xmlns="http://www.w3.org/2000/svg">
+                    <motion.path
+                      d="M5 12.5l4.5 4.5L19 7.5"
+                      stroke="white"
+                      strokeWidth="2.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={reduceMotion ? undefined : { pathLength: 0 }}
+                      animate={reduceMotion ? undefined : { pathLength: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                    />
+                  </svg>
+                </motion.div>
+                <h3 id="diagnostico-title" className="mt-5 text-xl font-bold text-foreground">
+                  Enviado!
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  Te vemos no WhatsApp. Nossa equipe já vai continuar a
+                  conversa por lá.
+                </p>
+              </div>
+            ) : (
+              <>
+                <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
+                  Vamos conversar
+                </span>
+                <h3 id="diagnostico-title" className="mt-3 text-2xl font-bold text-foreground">
+                  Agende seu diagnóstico
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  Preencha rapidinho e a gente continua a conversa no
+                  WhatsApp, já com o contexto do seu negócio.
+                </p>
 
-            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div>
                 <label htmlFor="nome" className="mb-1.5 block text-xs font-medium text-muted">
                   Nome
@@ -202,10 +241,13 @@ export default function DiagnosticoModal({
                 Enviar e continuar no WhatsApp →
               </button>
 
-              <p className="text-center text-[11px] text-muted">
-                Ao enviar, você será direcionado ao WhatsApp da Fly Agency.
-              </p>
-            </form>
+                  <p className="text-center text-[11px] text-muted">
+                    Ao enviar, você será direcionado ao WhatsApp da Fly
+                    Agency.
+                  </p>
+                </form>
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}

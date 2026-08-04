@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
 import { PointerEvent, ReactNode } from "react";
 
 export default function TiltCard({
@@ -10,6 +10,7 @@ export default function TiltCard({
   children: ReactNode;
   className?: string;
 }) {
+  const reduceMotion = useReducedMotion();
   const rx = useMotionValue(0);
   const ry = useMotionValue(0);
   const srx = useSpring(rx, { stiffness: 220, damping: 22 });
@@ -22,10 +23,11 @@ export default function TiltCard({
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
-    rx.set(py);
-    ry.set(px);
     e.currentTarget.style.setProperty("--mx", `${(px + 0.5) * 100}%`);
     e.currentTarget.style.setProperty("--my", `${(py + 0.5) * 100}%`);
+    if (reduceMotion) return;
+    rx.set(py);
+    ry.set(px);
   }
 
   function handleLeave() {
@@ -37,7 +39,7 @@ export default function TiltCard({
     <motion.div
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      style={{ rotateX, rotateY, transformPerspective: 800 }}
+      style={reduceMotion ? undefined : { rotateX, rotateY, transformPerspective: 800 }}
       className={`spotlight ${className}`}
     >
       {children}

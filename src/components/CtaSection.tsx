@@ -1,14 +1,22 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import PremiumButton from "./PremiumButton";
 import { useDiagnostico } from "./DiagnosticoContext";
 
 export default function CtaSection() {
   const { openModal } = useDiagnostico();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const glowY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
 
   return (
-    <section id="contato" className="mx-auto max-w-6xl px-6 py-28">
+    <section ref={sectionRef} id="contato" className="mx-auto max-w-6xl px-6 py-28">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -20,13 +28,18 @@ export default function CtaSection() {
             "radial-gradient(600px circle at 50% -10%, rgba(139,92,246,0.35), transparent 60%), linear-gradient(180deg, #0c0b12 0%, #060608 100%)",
         }}
       >
-        <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
+        <motion.div
+          style={{ y: glowY }}
+          className="pointer-events-none absolute left-1/2 top-0 h-64 w-96 -translate-x-1/2 rounded-full bg-violet/20 blur-[90px]"
+        />
+
+        <span className="relative text-xs font-medium uppercase tracking-[0.2em] text-violet-accent">
           Vamos conversar
         </span>
 
         <h2 className="text-display relative mx-auto mt-4 max-w-2xl text-foreground">
-          Pronto para acelerar seu{" "}
-          <span className="text-gradient">crescimento?</span>
+          Pronto para{" "}
+          <span className="text-gradient">voar alto?</span>
         </h2>
 
         <p className="relative mx-auto mt-6 max-w-xl text-muted">
