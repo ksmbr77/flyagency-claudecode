@@ -46,7 +46,7 @@ export default function HeroVisual() {
     <div
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative mx-auto h-[320px] w-full max-w-md origin-top scale-75 [perspective:1200px] sm:h-[480px] sm:scale-100"
+      className="relative mx-auto h-[320px] w-full max-w-md origin-top scale-75 [perspective:1200px] sm:h-[360px] sm:scale-90 lg:h-[480px] lg:scale-100"
     >
       <div className="glow-violet pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet/25 blur-[80px]" />
 

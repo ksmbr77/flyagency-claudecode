@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { WHATSAPP_NUMBER } from "@/lib/contacts";
 
@@ -23,12 +23,35 @@ export default function DiagnosticoModal({
   const [empresa, setEmpresa] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [desafio, setDesafio] = useState("");
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const firstFieldRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
+    firstFieldRef.current?.focus();
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab" || !dialogRef.current) return;
+
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
@@ -75,6 +98,7 @@ export default function DiagnosticoModal({
           onClick={onClose}
         >
           <motion.div
+            ref={dialogRef}
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
@@ -112,11 +136,12 @@ export default function DiagnosticoModal({
                 </label>
                 <input
                   id="nome"
+                  ref={firstFieldRef}
                   required
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
                   placeholder="Seu nome"
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-muted/60 outline-none transition-colors focus:border-violet-accent/60"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-muted/60 outline-none transition-colors focus:border-violet-accent/60 focus:ring-2 focus:ring-violet-accent/30"
                 />
               </div>
 
@@ -130,7 +155,7 @@ export default function DiagnosticoModal({
                   value={empresa}
                   onChange={(e) => setEmpresa(e.target.value)}
                   placeholder="Nome da sua empresa"
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-muted/60 outline-none transition-colors focus:border-violet-accent/60"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-muted/60 outline-none transition-colors focus:border-violet-accent/60 focus:ring-2 focus:ring-violet-accent/30"
                 />
               </div>
 
@@ -145,7 +170,7 @@ export default function DiagnosticoModal({
                   value={whatsapp}
                   onChange={(e) => setWhatsapp(e.target.value)}
                   placeholder="(00) 00000-0000"
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-muted/60 outline-none transition-colors focus:border-violet-accent/60"
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground placeholder:text-muted/60 outline-none transition-colors focus:border-violet-accent/60 focus:ring-2 focus:ring-violet-accent/30"
                 />
               </div>
 
@@ -157,7 +182,7 @@ export default function DiagnosticoModal({
                   id="desafio"
                   value={desafio}
                   onChange={(e) => setDesafio(e.target.value)}
-                  className="w-full appearance-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-violet-accent/60"
+                  className="w-full appearance-none rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-violet-accent/60 focus:ring-2 focus:ring-violet-accent/30"
                 >
                   <option value="" className="bg-surface-2">
                     Selecione uma opção

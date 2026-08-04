@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import PremiumButton from "./PremiumButton";
 import HeroVisual from "./HeroVisual";
+import WingsLogo from "./WingsLogo";
 import { useDiagnostico } from "./DiagnosticoContext";
 
 export default function Hero() {
@@ -16,11 +17,20 @@ export default function Hero() {
       <div className="bg-hairline pointer-events-none absolute inset-0" />
       <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         <div className="text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 12, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="glass flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 glow-violet"
+          >
+            <WingsLogo className="h-8 w-8" />
+          </motion.div>
+
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="glass inline-block rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-violet-accent"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="glass mt-5 inline-block rounded-full px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-violet-accent"
           >
             Voe Alto · Marketing digital para empresas que querem crescer
           </motion.span>

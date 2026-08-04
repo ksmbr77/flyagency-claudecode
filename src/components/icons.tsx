@@ -5,6 +5,7 @@ const props = (className?: string) => ({
   fill: "none" as const,
   className: className ?? base,
   xmlns: "http://www.w3.org/2000/svg",
+  "aria-hidden": "true" as const,
 });
 const stroke = { stroke: "url(#iconGradient)", strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 
