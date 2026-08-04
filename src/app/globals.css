@@ -78,10 +78,11 @@ body {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
 }
 
-/* SVG fractal noise, layered at very low opacity for texture */
-.bg-noise {
-  position: relative;
-}
+/* SVG fractal noise, layered at very low opacity for texture.
+   Callers must supply their own position (relative/fixed/absolute) —
+   this class used to set position: relative itself, which silently
+   beat Tailwind's `fixed` utility on same-specificity ties and broke
+   full-screen overlays that combined the two (e.g. the intro loader). */
 .bg-noise::after {
   content: "";
   position: absolute;
