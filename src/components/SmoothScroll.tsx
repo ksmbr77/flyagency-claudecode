@@ -23,8 +23,23 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     }
     frameId = requestAnimationFrame(raf);
 
+    // Lenis doesn't intercept anchor-link clicks on its own, so without this
+    // nav links would jump instantly while wheel/touch scrolling stays smooth.
+    function handleAnchorClick(e: MouseEvent) {
+      const anchor = (e.target as HTMLElement).closest('a[href^="#"]');
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target as HTMLElement, { offset: -16 });
+    }
+    document.addEventListener("click", handleAnchorClick);
+
     return () => {
       cancelAnimationFrame(frameId);
+      document.removeEventListener("click", handleAnchorClick);
       lenis.destroy();
     };
   }, []);
