@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import WingsLogo from "./WingsLogo";
 import PremiumButton from "./PremiumButton";
-import { WHATSAPP_LINK } from "@/lib/contacts";
+import { useDiagnostico } from "./DiagnosticoContext";
 
 const links = [
   { href: "#servicos", label: "O que entregamos" },
@@ -16,6 +16,7 @@ const links = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { openModal } = useDiagnostico();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -68,7 +69,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <PremiumButton href={WHATSAPP_LINK} target="_blank" className="!px-5 !py-2.5 text-[13px]">
+          <PremiumButton onClick={openModal} className="!px-5 !py-2.5 text-[13px]">
             Agendar Diagnóstico
           </PremiumButton>
         </div>
@@ -119,8 +120,10 @@ export default function Header() {
               ))}
               <div className="mt-3">
                 <PremiumButton
-                  href={WHATSAPP_LINK}
-                  target="_blank"
+                  onClick={() => {
+                    setOpen(false);
+                    openModal();
+                  }}
                   className="w-full !justify-center"
                 >
                   Agendar Diagnóstico

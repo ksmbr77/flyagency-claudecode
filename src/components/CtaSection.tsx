@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import PremiumButton from "./PremiumButton";
-import { WHATSAPP_LINK } from "@/lib/contacts";
+import { useDiagnostico } from "./DiagnosticoContext";
 
 export default function CtaSection() {
+  const { openModal } = useDiagnostico();
+
   return (
     <section id="contato" className="mx-auto max-w-6xl px-6 py-28">
       <motion.div
@@ -33,7 +35,7 @@ export default function CtaSection() {
         </p>
 
         <div className="relative mt-10 flex justify-center">
-          <PremiumButton href={WHATSAPP_LINK} target="_blank">
+          <PremiumButton onClick={openModal}>
             Agendar diagnóstico
           </PremiumButton>
         </div>

@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import PremiumButton from "./PremiumButton";
 import HeroVisual from "./HeroVisual";
-import { WHATSAPP_LINK } from "@/lib/contacts";
+import { useDiagnostico } from "./DiagnosticoContext";
 
 export default function Hero() {
+  const { openModal } = useDiagnostico();
+
   return (
     <section
       id="top"
@@ -52,7 +54,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.7 }}
             className="mt-10 flex flex-col gap-4 sm:flex-row"
           >
-            <PremiumButton href={WHATSAPP_LINK} target="_blank">
+            <PremiumButton onClick={openModal}>
               Agendar Diagnóstico
             </PremiumButton>
             <PremiumButton href="#cases" variant="ghost">
