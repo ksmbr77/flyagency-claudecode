@@ -18,9 +18,31 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Fly Agency",
-  description: "Landing page da Fly Agency",
+  description:
+    "Marketing digital para empresas que querem crescer: tráfego pago, posicionamento de marca e estratégia comercial.",
+  openGraph: {
+    title: "Fly Agency · Marketing que vende de verdade.",
+    description:
+      "Marketing digital para empresas que querem crescer: tráfego pago, posicionamento de marca e estratégia comercial.",
+    siteName: "Fly Agency",
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fly Agency · Marketing que vende de verdade.",
+    description:
+      "Marketing digital para empresas que querem crescer: tráfego pago, posicionamento de marca e estratégia comercial.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
