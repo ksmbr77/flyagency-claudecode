@@ -20,6 +20,8 @@ const services = [
     description:
       "Anúncios que colocam sua marca na frente de quem já está pronto para comprar.",
     icon: IconTarget,
+    featured: true,
+    tag: "+186% cliques",
   },
   {
     title: "Posicionamento de Marca",
@@ -44,6 +46,8 @@ const services = [
     description:
       "Um caminho claro, do primeiro contato até o fechamento da compra.",
     icon: IconFunnel,
+    featured: true,
+    tag: "0 leads perdidos",
   },
   {
     title: "Análise de Dados",
@@ -68,6 +72,8 @@ const services = [
     description:
       "Cada decisão pensada para gerar mais resultado com o mesmo investimento.",
     icon: IconTrending,
+    featured: true,
+    tag: "ROI em foco",
   },
 ];
 
@@ -104,7 +110,7 @@ export default function Services() {
         </motion.p>
       </div>
 
-      <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-16 grid auto-rows-fr grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((service, i) => {
           const Icon = service.icon;
           return (
@@ -113,16 +119,45 @@ export default function Services() {
               initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: [0.16, 1, 0.3, 1] as const }}
+              transition={{ duration: 0.6, delay: (i % 4) * 0.08, ease: [0.16, 1, 0.3, 1] as const }}
+              className={service.featured ? "sm:col-span-2" : ""}
             >
-              <TiltCard className="glass group h-full rounded-2xl p-7 transition-colors duration-300 hover:bg-white/[0.06]">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-violet-secondary/15 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                  <Icon className="h-6 w-6" />
+              <TiltCard
+                className={`glass group relative flex h-full flex-col overflow-hidden rounded-2xl transition-colors duration-300 hover:bg-white/[0.06] ${
+                  service.featured ? "p-8" : "p-6"
+                }`}
+              >
+                {service.featured && (
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-violet/10 blur-3xl" />
+                )}
+
+                <div className="relative flex items-start justify-between">
+                  <div
+                    className={`flex items-center justify-center border border-white/10 bg-violet-secondary/15 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 ${
+                      service.featured ? "h-14 w-14 rounded-2xl" : "h-11 w-11 rounded-xl"
+                    }`}
+                  >
+                    <Icon className={service.featured ? "h-7 w-7" : "h-5 w-5"} />
+                  </div>
+                  {service.tag && (
+                    <span className="rounded-full border border-violet-accent/25 bg-violet/10 px-2.5 py-1 text-[11px] font-medium text-violet-accent">
+                      {service.tag}
+                    </span>
+                  )}
                 </div>
-                <h3 className="mt-5 text-base font-semibold text-foreground">
+
+                <h3
+                  className={`relative font-semibold text-foreground ${
+                    service.featured ? "mt-6 text-xl" : "mt-5 text-base"
+                  }`}
+                >
                   {service.title}
                 </h3>
-                <p className="mt-2.5 text-[15px] leading-relaxed text-muted">
+                <p
+                  className={`relative leading-relaxed text-muted ${
+                    service.featured ? "mt-3 max-w-sm text-[15px]" : "mt-2.5 text-[15px]"
+                  }`}
+                >
                   {service.description}
                 </p>
               </TiltCard>
