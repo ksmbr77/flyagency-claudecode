@@ -10,7 +10,7 @@
   --violet-secondary: #6d28d9;
   --violet-accent: #a855f7;
   --magenta: #d946ef;
-  --border-soft: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(139, 92, 246, 0.35);
   --border-softer: rgba(255, 255, 255, 0.06);
 }
 
@@ -98,6 +98,13 @@ body {
   border: 1px solid var(--border-soft);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass:hover {
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow: 0 0 32px rgba(139, 92, 246, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .glass-strong {
@@ -105,6 +112,7 @@ body {
   border: 1px solid var(--border-soft);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .glow-violet {
